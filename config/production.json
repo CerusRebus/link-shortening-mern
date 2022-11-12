@@ -1,6 +1,0 @@
-{
-  "port": 5000,
-  "mongoUri": "mongodb+srv://admin:admin123@cluster0.v3xy9zd.mongodb.net/app?retryWrites=true&w=majority",
-  "jwtSecret": "cerusrebus link-shortening-mern",
-  "baseUrl": "http://localhost:5000"
-}
