@@ -2,9 +2,13 @@ import {Router} from "express"
 import bcrypt from "bcryptjs"
 import {check, validationResult} from "express-validator"
 import jwt from "jsonwebtoken"
-import config from "config"
+import dotenv from "dotenv"
 
 import User from "../models/User.js"
+
+dotenv.config()
+
+const JWT_SECRET = process.env.JWT_SECRET
 
 const router = Router()
 
@@ -68,10 +72,11 @@ router.post('/login',
 
             if (!isMatch) return res.status(400).json({success: false, message: 'Wrong password, please try again'})
 
-            const token = jwt.sign({userId: user.id}, config.get('jwtSecret'), {expiresIn: '1h'})
+            const token = jwt.sign({userId: user.id}, JWT_SECRET)
 
             return res.status(200).json({success: true, token, userId: user.id})
         } catch (error) {
+            console.log(error);
             return res.status(500).json({success: false, message: 'Something went wrong, please try again'})
         }
     })

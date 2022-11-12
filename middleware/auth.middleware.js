@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken"
-import config from "config"
+
+const JWT_SECRET = process.env.JWT_SECRET
 
 const authMiddleware = (req, res, next) => {
     if (req.method === 'OPTIONS') return next()
@@ -9,7 +10,7 @@ const authMiddleware = (req, res, next) => {
 
         if (!token) return res.status(401).json({success: false, message: 'No authorization'})
 
-        req.user = jwt.verify(token, config.get('jwtSecret'))
+        req.user = jwt.verify(token, `${JWT_SECRET}`)
         next()
     } catch (error) {
         return res.status(401).json({success: false, message: 'No authorization'})

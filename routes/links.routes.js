@@ -1,8 +1,12 @@
 import {Router} from "express"
-import config from "config"
 import shortid from "shortid"
 import Link from "../models/Link.js"
 import auth from "../middleware/auth.middleware.js"
+import * as dotenv from "dotenv"
+
+dotenv.config()
+
+const BASE_URL = process.env.BASE_URL
 
 const router = Router()
 
@@ -10,12 +14,11 @@ const router = Router()
 // http://localhost:5000/api/link/generate
 router.post('/generate', auth, async (req, res) => {
     try {
-        const baseUrl = config.get('baseUrl')
         const {from} = req.body
         const code = shortid.generate()
         const existing = await Link.findOne({from})
         if (existing) return res.status(200).json({success: true, link: existing})
-        const to = baseUrl + '/t/' + code
+        const to = `${BASE_URL}` + '/t/' + code
         const link = new Link({
             code, to, from, owner: req.user.userId
         })
