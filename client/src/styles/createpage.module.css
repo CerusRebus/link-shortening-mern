@@ -1,0 +1,15 @@
+.wrapper {
+    padding-top: 2rem !important;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.btn-addLink {
+    display: flex;
+    margin-left: 5%;
+}
+
+.btn-addLink__icon {
+    margin-right: 0.5rem;
+}

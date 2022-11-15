@@ -1,6 +1,6 @@
 import React, {useCallback, useContext, useEffect, useState} from 'react'
-import {useParams} from "react-router-dom"
 import {AuthContext} from "../context/AuthContext"
+import {useParams} from "react-router-dom"
 import {useHttp} from "../hooks/http.hook"
 
 import Loader from "../components/Loader"
@@ -18,7 +18,9 @@ const DetailsPage = () => {
                 Authorization: `Bearer ${token}`
             })
             setLink(fetched)
-        } catch (error) {}
+        } catch (error) {
+            return console.log(error)
+        }
     }, [token, linkId, request])
 
     useEffect(() => {

@@ -16,8 +16,8 @@ const router = Router()
 // http://localhost:5000/api/auth/register
 router.post('/register',
     [
-        check('email', 'Incorrect email').isEmail(),
-        check('password', 'Minimum password length 6 characters').isLength({min: 6})
+        check('email', 'Incorrect email.').isEmail(),
+        check('password', 'Minimum password length 6 characters.').isLength({min: 6})
     ],
     async (req, res) => {
         try {
@@ -26,7 +26,7 @@ router.post('/register',
                 return res.status(400).json({
                     success: false,
                     errors: errors.array(),
-                    message: 'Incorrect data during registration'
+                    message: errors.array().map(error => error.msg).join('<br>')
                 })
             }
 
@@ -62,7 +62,6 @@ router.post('/login',
                     message: 'Incorrect login details'
                 })
             }
-
             const {email, password} = req.body
             const user = await User.findOne({email})
 
@@ -74,9 +73,8 @@ router.post('/login',
 
             const token = jwt.sign({userId: user.id}, JWT_SECRET)
 
-            return res.status(200).json({success: true, token, userId: user.id})
+            return res.status(200).json({success: true, message: 'You are logged into your account', token, userId: user.id})
         } catch (error) {
-            console.log(error);
             return res.status(500).json({success: false, message: 'Something went wrong, please try again'})
         }
     })
