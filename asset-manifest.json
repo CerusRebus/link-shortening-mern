@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/link-shortening-mern/static/css/main.3f9af67a.css",
+    "main.js": "/link-shortening-mern/static/js/main.8e21b5ca.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/link-shortening-mern/static/js/787.c4e7f8f9.chunk.js",
+    "index.html": "/link-shortening-mern/index.html",
+    "main.3f9af67a.css.map": "/link-shortening-mern/static/css/main.3f9af67a.css.map",
+    "main.8e21b5ca.js.map": "/link-shortening-mern/static/js/main.8e21b5ca.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/link-shortening-mern/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3f9af67a.css",
+    "static/js/main.8e21b5ca.js"
+  ]
+}
